@@ -5,5 +5,7 @@ from django.db import models
 
 
 class URLShortener(models.Model):
-    url = models.URLField()
+    original_url = models.URLField()
     short_url = models.URLField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
