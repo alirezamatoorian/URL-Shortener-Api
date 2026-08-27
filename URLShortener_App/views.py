@@ -19,7 +19,7 @@ class URLShortenerView(APIView):
         serializer.is_valid(raise_exception=True)
         short_url = generate_short_url()
         original_url = serializer.validated_data["original_url"]
-        url_obj,created=URL.objects.create(original_url=original_url,short_url=short_url)
+        url_obj=URL.objects.create(original_url=original_url,short_url=short_url)
         return Response(URLSerializer(url_obj).data,status=status.HTTP_201_CREATED)
 
 

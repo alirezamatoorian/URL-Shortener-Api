@@ -9,10 +9,8 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
-from idlelib import config
 from pathlib import Path
 
-import django_redis
 from decouple import config
 
 from django.conf.global_settings import CACHES
@@ -163,7 +161,7 @@ REST_FRAMEWORK = {
 CACHES={
     'default':{
         'BACKEND': "django_redis.cache.RedisCache",
-        'LOCATION':"redis://127.0.0.1:6379/1",
+        'LOCATION':"redis://redis/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
