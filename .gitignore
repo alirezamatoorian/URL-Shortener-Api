@@ -1,5 +1,7 @@
 __pycache__/
 *.pyc
+.env.dev
 .env
+.env.prod
 db.sqlite3
 media/
