@@ -14,3 +14,7 @@ def click_count(short_url):
         cache.incr(redis_key)
     except ValueError:
         cache.set(redis_key,1)
+
+def get_click_count(short_url):
+    redis_key=f"clicks:{short_url}"
+    return cache.get(redis_key,0)

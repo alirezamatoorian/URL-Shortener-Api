@@ -5,7 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import URLSerializer
-from .service import generate_short_url,click_count
+from .service import generate_short_url,click_count,get_click_count
 from .models import URL
 # Create your views here.
 
@@ -29,3 +29,12 @@ class URLRedirectView(APIView):
         original_url = get_object_or_404(URL,short_url=short_code)
         click_count(short_code)
         return HttpResponseRedirect(original_url.original_url)
+
+
+class ClickCountView(APIView):
+    permission_classes = [AllowAny]
+    def get(self,request,short_code):
+        url = get_object_or_404(URL,short_url=short_code)
+        click_count=get_click_count(url.short_url)
+        return Response({"short-code":short_code,"click-count":click_count},status=status.HTTP_200_OK)
+
